@@ -20,6 +20,7 @@ class Login extends Component {
 		
 		e.preventDefault();
 		
+		console.log(this.props.loggedIn)
 		try{
 			const registerResponse = await fetch('http://localhost:9000/auth/register', {
 				method: 'POST',
@@ -32,10 +33,11 @@ class Login extends Component {
 
 			const parsedResponse = await registerResponse.json();
 			
+			//here we check if res from DB is positive 
 			if(parsedResponse.status === 200) {
-				this.props.loggedIn = true
+				this.props.handleRegister(this.state.username)
 			}
-
+			// console.log(this.props.loggedIn)
 		}catch(err){
 			
 		}
@@ -44,8 +46,8 @@ class Login extends Component {
 	render(){
 		return(
 			<form onSubmit = { this.handleSubmit }>
-				<input type='text' name='username' onChange = {this.handleChange}/>
-				<input type='password' name='password' onChange = { this.handleChange }/>
+				<input type='text' name='username' value={ this.state.username } onChange = {this.handleChange} placeholder="username"/>
+				<input type='password' name='password'  value={this.state.password }onChange = { this.handleChange } placeholder="password"/>
 				<button>Register</button>
 			</form>
 		)
