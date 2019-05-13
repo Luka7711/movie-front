@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import './index.css'
+
 
 class Logout extends Component {
     constructor() {
@@ -8,7 +10,7 @@ class Logout extends Component {
         }
     }
 
-    handleChange = async (e) => {
+    signOut = async (e) => {
         e.preventDefault();
 
         try {
@@ -16,6 +18,7 @@ class Logout extends Component {
                 method: 'GET',
                 credentials: 'include'
             });
+            
             if (logoutResponse.status !== 200) {
                 throw Error('Failed to logout');
             }
@@ -29,7 +32,9 @@ class Logout extends Component {
 
         render() {
             return ( 
-                <button onClick = {this.handleChange}> Sign Out </button>
+                <div>
+                    <button onClick={this.signOut}>Sign Out</button>
+                </div>
             )
         }
     

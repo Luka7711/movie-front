@@ -20,7 +20,7 @@ class Login extends Component {
 		
 		e.preventDefault();
 		
-		console.log(this.props.loggedIn)
+		// console.log(this.props.loggedIn)
 		try{
 			const registerResponse = await fetch('http://localhost:9000/auth/register', {
 				method: 'POST',
