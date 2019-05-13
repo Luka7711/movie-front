@@ -5,6 +5,8 @@ import Logout from './Logout'
 import Login from './Login'
 import Header from './Header'
 import { Route, Switch } from 'react-router-dom'
+import MovieLink from './MovieLink'
+import MovieList from './MovieList'
 
 class App extends Component {
   constructor(){
@@ -14,6 +16,7 @@ class App extends Component {
       username: '',
       loggedIn: false,
       message: '',
+      movieLinkUsed: false,
       movies: []
     }
   }
@@ -43,14 +46,16 @@ class App extends Component {
     console.log(this.state)
     return (
       <div className="App">
+         { this.state.loggedIn === false ? <Header /> : <Logout handleLogout={this.handleLogout}/> }
+        <MovieLink/>
         
-      
-        { this.state.loggedIn === false ? <Header /> : <Logout handleLogout={this.handleLogout}/> }
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-
+            <Route exact path="/movieList" component={MovieList} />
         </Switch>
+
+
       </div>
     );
   }
