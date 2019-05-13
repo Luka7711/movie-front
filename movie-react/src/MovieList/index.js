@@ -5,20 +5,53 @@ class MovieList extends Component {
 		super();
 
 		this.state = {
-			title: '',
-     		date: '',
-     		address: '',
-     		day: '',
-     		lat: '',
-     		lng: '',
-     		park: ''
+			movies: []
 		}
 	} 
 
+	componentDidMount(){
+		this.getMovies()
+	}
+
+	getMovies = async() =>{
+
+		try{
+
+			const response = await fetch('http://localhost:9000/chicago-cinema/movies', {
+				method:'GET',
+				credentials: 'include'
+			}) 
+			if(response.status !== 200){
+				console.log('failed')
+			} 
+
+			const moviesParsed = await response.json();
+
+			this.setState({
+				movies: moviesParsed.data
+			})
+
+		}catch(err){
+			console.log(err)
+		}
+	}
 
 	render(){
+		console.log(this.state)
+		const movieList = this.state.movies.map((movie, i) => {
+			return(
+			<div key={i}>
+				<p>Title: {movie.title}</p>
+				<p>Date: {movie.date}</p>
+				<p>Address: {movie.address}</p>
+				<p>Park: {movie.park}</p><br/>
+			</div>
+			)
+		})
 		return(
-			<h1>Movie list:</h1>
+			<div>
+				{movieList}
+			</div>
 		)
 	}
 }

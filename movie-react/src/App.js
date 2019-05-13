@@ -16,7 +16,6 @@ class App extends Component {
       username: '',
       loggedIn: false,
       message: '',
-      movieLinkUsed: false,
       movies: []
     }
   }
@@ -52,7 +51,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-            <Route exact path="/movieList" component={MovieList} />
+          <Route exact path="/movieList" component={MovieList} />
         </Switch>
 
 
