@@ -36,6 +36,7 @@ class Login extends Component {
 			//here we check if res from DB is positive 
 			if(parsedResponse.status === 200) {
 				this.props.handleRegister(this.state.username)
+				this.props.history.push('/')
 			}
 			// console.log(this.props.loggedIn)
 		}catch(err){

@@ -12,13 +12,13 @@ class Login extends Component {
 
 	handleChange = (e) => {
 		this.setState({
-			[e.target.name]: e.target.value
+			[e.currentTarget.name]: e.currentTarget.value
 		})
 	}
 
 	handleSubmit = async(e) => {
 		
-		e.prevent.default()
+		e.preventDefault()
 
 		try{
 
@@ -35,6 +35,7 @@ class Login extends Component {
 
 			if(parsedResponse.status === 200){
 				this.props.handleLogin(this.state.username)
+				this.props.history.push('/') // "change the page" using react router
 			}
 
 		}catch(err){

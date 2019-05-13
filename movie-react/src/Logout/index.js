@@ -18,12 +18,12 @@ class Logout extends Component {
                 method: 'GET',
                 credentials: 'include'
             });
-            
+
             if (logoutResponse.status !== 200) {
                 throw Error('Failed to logout');
             }
 
-            this.props.logout(this.state.username)
+            this.props.handleLogout(this.state.username)
 
         } catch (err) {
             console.log(err)

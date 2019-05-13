@@ -12,7 +12,9 @@ class App extends Component {
 
     this.state = {
       username: '',
-      loggedIn: false
+      loggedIn: false,
+      message: '',
+      movies: []
     }
   }
 
@@ -41,11 +43,13 @@ class App extends Component {
     console.log(this.state)
     return (
       <div className="App">
-        <Header />
+        
+      
+        { this.state.loggedIn === false ? <Header /> : <Logout handleLogout={this.handleLogout}/> }
         <Switch>
-          <Route exact path='/login' handleLogin={this.handleLogin} component={Login} />
-          <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} />} />
-          <Route exact path='/logout'/>
+          <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
+          <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
+
         </Switch>
       </div>
     );
