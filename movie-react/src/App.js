@@ -16,7 +16,7 @@ class App extends Component {
       username: '',
       loggedIn: false,
       message: '',
-      movies: []
+      showMovieLink: true
     }
   }
 

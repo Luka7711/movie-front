@@ -6,7 +6,7 @@ function MovieLink(){
 		<div className="movie_message">
 			<ul>
 				<li> Movies in the Parks 2019: </li>
-				<li><Link to='/movieList'> See Events </Link></li>
+				<Link to="/movieList">See Movies</Link>
 			</ul>
 		</div>
 	)
