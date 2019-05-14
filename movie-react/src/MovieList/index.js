@@ -73,6 +73,8 @@ class MovieList extends Component {
 
 	render(){
 		console.log(this.state.oneMovie, '<--this is one movie from state')
+		
+		// remember, you can use .slice() to create a copy of an array between two indices of your choice 
 		const movieList = this.state.movies.map((movie, i) => {
 			return(
 				<div key={i}>

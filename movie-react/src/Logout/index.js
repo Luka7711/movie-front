@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import './index.css'
-
+import {Link} from 'react-router-dom';
 
 class Logout extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            username: ''
+            username: props.username
         }
     }
 
@@ -22,7 +22,6 @@ class Logout extends Component {
             if (logoutResponse.status !== 200) {
                 throw Error('Failed to logout');
             }
-
             this.props.handleLogout(this.state.username)
 
         } catch (err) {
@@ -33,6 +32,7 @@ class Logout extends Component {
         render() {
             return ( 
                 <div>
+                    <p>{this.state.username}</p>
                     <button onClick={this.signOut}>Sign Out</button>
                 </div>
             )

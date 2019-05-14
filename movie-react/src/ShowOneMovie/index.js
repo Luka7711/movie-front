@@ -15,7 +15,7 @@ class ShowOneMovie extends Component{
 
 	} render(){
 		const movie = this.props.oneMovie
-		// console.log(this.props., '<---show_movie model>')
+		console.log(this.state)
 		return(
 			<div>
 				<ul>
