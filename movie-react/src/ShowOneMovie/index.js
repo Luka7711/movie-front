@@ -16,13 +16,15 @@ class ShowOneMovie extends Component{
 	} render(){
 		const movie = this.props.oneMovie
 		console.log(this.state)
+		console.log("Do I show up?")
+		console.log(movie)
 		return(
 			<div>
 				<ul>
-					<li>Title: {this.state.title}</li>
-					<li>Date: {this.state.date} </li>
-					<li>Address: {this.state.address}</li>
-					<li>Day: {this.state.day}</li>
+					<li>Title: {movie.title} </li>
+					<li>Date: {movie.date} </li>
+					<li>Address: {movie.address}</li>
+					<li>Day: {movie.day}</li>
 				</ul>
 			</div>
 		)
