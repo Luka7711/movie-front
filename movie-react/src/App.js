@@ -47,9 +47,15 @@ class App extends Component {
     })
   }
 
-  handleMovieList =() => {
+  handleMovieList = () => {
     this.setState({
       showMovieList: false
+    })
+  }
+
+  handelHome = ()=>{
+    this.setState({
+      showMovieList: true
     })
   }
 
@@ -61,6 +67,18 @@ class App extends Component {
     })
   }
 
+  handleShowOneMovie = () => {
+    this.setState({
+      showOneMovie: true
+    })
+  }
+
+  getOneMovie = (oneMovie) => {
+    this.setState({
+
+    })
+  }
+
 
   render(){
 
@@ -68,9 +86,13 @@ class App extends Component {
     console.log(this.state)
     return (
       <div className="App">
+      <button onClick={this.handelHome}>Home</button>
+
       <h2>Chicago Movie App</h2>
         {this.state.loggedIn? <Profile handleMovieListOn={this.handleMovieListOn}/> : <Authentication loggedIn={this.handleLoginCheck}/>}
-        {this.state.showMovieList? <MovieList handleMovieList={this.handleMovieList}/>: console.log('MovieList component removed')}
+        
+        {this.state.showMovieList ? <MovieList handleMovieList={this.handleMovieList} handleShowOneMovie={this.handleShowOneMovie}/>: console.log('MovieList component removed')}
+        
       </div>
     );
   }

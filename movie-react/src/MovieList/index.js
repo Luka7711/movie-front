@@ -8,7 +8,7 @@ class MovieList extends Component {
 
 		this.state = {
 			movies: [],
-			showMovieList: true,
+			showMovieList: false,
 			showMovie: false,
 			oneMovie: {}
 		}	
@@ -63,21 +63,21 @@ class MovieList extends Component {
 		}
 		const moviesParsed = await response.json();
 
-		console.log("response from server about which movie to show")
-		console.log(moviesParsed.data)
-
 		this.setState({
 			oneMovie: moviesParsed.data,
-			showMovieList: false,
-			showMovie: true
+			showMovie: true,
+			showMovieList: false
 		})
 
-		this.props.handleMovieList();
+		// this.props.handleMovieList();
+
 		console.log(this.state.oneMovie, '<--ShowOneMovie')
 	}
 
+	// method that switches back to show movie list -- pass this method down to component ShowOneMovie
+
 	render(){
-		// console.log(this.state.oneMovie, '<--this is one movie from state')
+		console.log(this.state.oneMovie, '<--this is one movie from state')
 		
 		// remember, you can use .slice() to create a copy of an array between two indices of your choice 
 		const movieList = this.state.movies.map((movie, i) => {
@@ -94,8 +94,8 @@ class MovieList extends Component {
 		})
 		return(
 			<div>
-				{this.state.showMovieList === true? [movieList]: <ShowOneMovie oneMovie={this.state.oneMovie}/>}
-			
+				{ this.state.showMovieList === true ? [movieList] : null } 
+				{ this.state.showMovie === true ? <ShowOneMovie oneMovie={this.state.oneMovie}/> : null }
 			</div>
 		)
 	}

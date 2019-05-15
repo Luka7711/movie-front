@@ -16,8 +16,6 @@ class ShowOneMovie extends Component{
 	} render(){
 		const movie = this.props.oneMovie
 		console.log(this.state)
-		console.log("Do I show up?")
-		console.log(movie)
 		return(
 			<div>
 				<ul>
