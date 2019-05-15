@@ -1,15 +1,41 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-function Header(){
+import React, {Component} from 'react';
+import Login from '../Login'
+import Register from '../Register'
 
-	return(
-		<header>
-			<ul>
-				<li><Link to="/login">Login</Link></li>
-				<li><Link to="/signup">Sign Up</Link></li>
-			</ul>
-		</header>
-	)
+class Header extends Component{
+	constructor(){
+		super();
+		this.state = {
+			username: '',
+			showLogin: false,
+			showRegister: false
+		}
+	}
+
+
+	handleLogin = () => {
+		this.setState({
+			showAuth: true,
+		})
+	}
+
+	handleRegister = () => {
+		this.setState({
+			showRegister: true
+		})
+	}
+
+
+	render(){
+		
+		return(
+			<div>
+				<ul>
+					<li onClick={this.handleLogin}>Login</li>
+					<li onClick={this.handleRegister}>Sign Up</li>
+				</ul>
+			</div>
+		)
+	}
 }
-
 export default Header
