@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import {Route} from 'react-router-dom'
 class Login extends Component {
 
 	constructor(){
@@ -10,47 +10,52 @@ class Login extends Component {
 		}
 	}
 
-	handleChange = (e) => {
-		this.setState({
-			[e.currentTarget.name]: e.currentTarget.value
-		})
-	}
+	// handleChange = (e) => {
+	// 	this.setState({
+	// 		[e.currentTarget.name]: e.currentTarget.value
+	// 	})
+	// }
 
-	handleSubmit = async(e) => {
+	// handleSubmit = async(e) => {
 		
-		e.preventDefault()
+	// 	e.preventDefault()
 
-		try{
+	// 	try{
 
-			const loginResponse = await fetch('http://localhost:9000/auth/login', {
-				method: 'POST',
-				credentials: 'include',
-				body: JSON.stringify(this.state),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})
+	// 		const loginResponse = await fetch('http://localhost:9000/auth/login', {
+	// 			method: 'POST',
+	// 			credentials: 'include',
+	// 			body: JSON.stringify(this.state),
+	// 			headers: {
+	// 				'Content-Type': 'application/json'
+	// 			}
+	// 		})
 
-			const parsedResponse = await loginResponse.json();
+	// 		const parsedResponse = await loginResponse.json();
 
-			if(parsedResponse.status === 200){
-				this.props.handleLogin(this.state.username)
-				this.props.history.push('/') // "change the page" using react router
-			}
+	// 		if(parsedResponse.status === 200){
+	// 			this.props.handleLogin(this.state.username)
+	// 			this.props.history.push('/') // "change the page" using react router
+	// 		}
 
-		}catch(err){
-			console.log(err)
-		}
-	}
+	// 	}catch(err){
+	// 		console.log(err)
+	// 	}
+	// }
 
 	render(){
+		// return(
+		// 	<form onSubmit={this.handleSubmit}>
+		// 		<input type='text' name='username' placeholder='username' onChange={this.handleChange} />
+		// 		<input type='password' name='password' placeholder='password' onChange={this.handleChange} />
+		// 		<button>Login</button>
+		// 	</form>
 		return(
-			<form onSubmit={this.handleSubmit}>
-				<input type='text' name='username' placeholder='username' onChange={this.handleChange} />
-				<input type='password' name='password' placeholder='password' onChange={this.handleChange} />
-				<button>Login</button>
-			</form>
+			<div>
+				<Route exact path="/login" component={Login} />
+			</div>
 		)
+		
 	}
 }
 

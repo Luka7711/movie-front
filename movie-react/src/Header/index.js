@@ -1,15 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-function Header(){
+import Login from '../Login'
+import Register from '../Register'
 
-	return(
+class Header extends Component{
+	constructor(){
+		super();
+	}
+	
+	// handleLogin = () => {
+
+	// }
+
+
+	render(){
 		<header>
 			<ul>
-				<li><Link to="/login">Login</Link></li>
-				<li><Link to="/signup">Sign Up</Link></li>
+				<li onClick={this.handleLogin}>Login</li>
+				<li>Sign Up</li>
 			</ul>
 		</header>
-	)
+	return(
+			<h1>aksnd</h1>
+		)
+	}
 }
 
 export default Header
