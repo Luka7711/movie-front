@@ -35,7 +35,7 @@ class Authentication extends Component{
 					<li onClick={this.handleLogin}>Login</li>
 					<li onClick={this.handleRegister}>Sign up</li>
 				</ul>
-				{this.state.showLogin === true? <Login loggedIn={this.props.loggedIn}/> : <Register/>}
+				{this.state.showLogin === true? <Login loggedIn={this.props.loggedIn}/> : <Register loggedIn={this.props.loggedIn}/>}
 			</header>
 			
 		)

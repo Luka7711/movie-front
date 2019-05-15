@@ -3,6 +3,7 @@ import './App.css';
 import Authentication from './Authentication';
 import Profile from './Profile';
 import MovieList from './MovieList'
+import ShowOneMovie from './ShowOneMovie';
 // import Register from './Register'
 // import Logout from './Logout'
 // import Login from './Login'
@@ -20,7 +21,8 @@ class App extends Component {
       loggedIn: false,
       message: '',
       showAuthent: false,
-      showMovieList: true
+      showMovieList: true,
+      showOneMovie: false
     }
   }
 
@@ -51,13 +53,23 @@ class App extends Component {
     })
   }
 
+  handleMovieListOn = (username) => {
+    this.setState({
+      username: username,
+      showMovieList: true,
+      loggedIn: false
+    })
+  }
+
+
   render(){
 
         // {this.state.showMovieList? <MovieList /> : console.log('MovieList')}
-    // console.log(this.state)
+    console.log(this.state)
     return (
       <div className="App">
-        {this.state.loggedIn? <Profile /> : <Authentication loggedIn={this.handleLoginCheck}/>}
+      <h2>Chicago Movie App</h2>
+        {this.state.loggedIn? <Profile handleMovieListOn={this.handleMovieListOn}/> : <Authentication loggedIn={this.handleLoginCheck}/>}
         {this.state.showMovieList? <MovieList handleMovieList={this.handleMovieList}/>: console.log('MovieList component removed')}
       </div>
     );

@@ -63,6 +63,7 @@ class MovieList extends Component {
 		}
 		const moviesParsed = await response.json();
 
+		this.props.handleMovieList();
 		console.log(moviesParsed.data)
 
 		this.setState({

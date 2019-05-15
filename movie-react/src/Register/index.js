@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class Register extends Component {
 	constructor(){
 		super();
 
@@ -35,8 +35,10 @@ class Login extends Component {
 			
 			//here we check if res from DB is positive 
 			if(parsedResponse.status === 200) {
-				this.props.handleRegister(this.state.username)
-				this.props.history.push('/')
+				this.setState({
+					username: parsedResponse.data.username
+				})
+				this.props.loggedIn(this.state.username);
 			}
 			// console.log(this.props.loggedIn)
 		}catch(err){
@@ -55,4 +57,4 @@ class Login extends Component {
 	}
 }
 
-export default Login
+export default Register
