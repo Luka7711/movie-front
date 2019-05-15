@@ -34,8 +34,16 @@ class Login extends Component {
 			const parsedResponse = await loginResponse.json();
 
 			if(parsedResponse.status === 200){
-				this.props.handleLogin(this.state.username)
-				this.props.history.push('/') // "change the page" using react router
+				console.log(`user loggedIN ${this.state.username}`)
+				// this.props.handleLogin(this.state.username)
+				// this.props.history.push('/') // "change the page" using react router
+				this.setState({
+					username: parsedResponse.data.username
+				})
+
+				//run function to set main file to loggedIn === true
+
+				this.props.loggedIn(this.state.username)
 			}
 
 		}catch(err){
@@ -44,6 +52,7 @@ class Login extends Component {
 	}
 
 	render(){
+
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<input type='text' name='username' placeholder='username' onChange={this.handleChange} />
