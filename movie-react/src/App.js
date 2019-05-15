@@ -43,16 +43,17 @@ class App extends Component {
 
   render(){
     console.log(this.state)
+        // <button onClick={this.state.handleShowMovies}>Home</button>
     return (
       <div className="App">
-         <a href='/movieList'>Home</a>
-         { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
-
+     
+         
+         { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/>} 
         
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-          <Route exact path="/movieList" render={(props) => <MovieList   />} />
+          <Route exact path="/movieList" render={(props) => <MovieList   username={this.state.username}/>} />
         </Switch>
 
 
