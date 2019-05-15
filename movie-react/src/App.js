@@ -16,7 +16,7 @@ class App extends Component {
       username: '',
       loggedIn: false,
       message: '',
-      showMovieLink: true
+      showMovieList: false
     }
   }
 
@@ -41,21 +41,24 @@ class App extends Component {
     })
   }
 
+  handleMovieList =() => {
+    this.setState({
+      showMovieList: true
+    })
+  }
+
   render(){
+
+        // {this.state.showMovieList? <MovieList /> : console.log('MovieList')}
     console.log(this.state)
     return (
       <div className="App">
-         <a href='/movieList'>Home</a>
          { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
 
+       <button onClick={this.handleMovieList}>Home</button>
+       
         
-        <Switch>
-          <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
-          <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-          <Route exact path="/movieList" render={(props) => <MovieList   />} />
-        </Switch>
-
-
+        {this.state.showMovieList === true? <MovieList/> : console.log('askdn')}
       </div>
     );
   }

@@ -70,11 +70,14 @@ class MovieList extends Component {
 			showMovieList: false
 		})
 	}
+	
+
 
 	render(){
 		console.log(this.state.oneMovie, '<--this is one movie from state')
-		
+		console.log(this.props.username, '<--logged in user')
 		// remember, you can use .slice() to create a copy of an array between two indices of your choice 
+
 		const movieList = this.state.movies.map((movie, i) => {
 			return(
 				<div key={i}>
@@ -82,8 +85,9 @@ class MovieList extends Component {
 					<p>Date: {movie.date}</p>
 					<p>Address: {movie.address}</p>
 					<p>Park: {movie.park}</p>
-					<button data-id={movie._id} onClick={this.showMovie}> See More </button>
-					<br/>
+				  	<button data-id={movie._id} onClick={this.showMovie}> See More </button>
+
+				<br/>
 				</div>
 			)
 		})
