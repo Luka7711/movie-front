@@ -13,9 +13,17 @@ class ShowOneMovie extends Component{
 			lat: props.oneMovie.lat
 		}
 
-	} render(){
+	} 
+
+	handleBack = () => {
+		//set showOneMovie === false
+		//set showMovieList === true
+		// this.props.handleMovieList(this.props.oneMovie.title)
+		console.log('HandleBack ')
+	}
+
+	render(){
 		const movie = this.props.oneMovie
-		console.log(this.state)
 		return(
 			<div>
 				<ul>
@@ -23,6 +31,7 @@ class ShowOneMovie extends Component{
 					<li>Date: {this.state.date} </li>
 					<li>Address: {this.state.address}</li>
 					<li>Day: {this.state.day}</li>
+					<button onClick={this.handleBack}>Back</button>
 				</ul>
 			</div>
 		)

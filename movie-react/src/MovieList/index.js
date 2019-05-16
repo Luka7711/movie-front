@@ -34,7 +34,8 @@ class MovieList extends Component {
 
 			this.setState({
 				movies: moviesParsed.data,
-				showMovieList: true
+				showMovieList: true,
+
 			})
 			
 
@@ -73,7 +74,7 @@ class MovieList extends Component {
 
 	render(){
 		console.log(this.state.oneMovie, '<--this is one movie from state')
-		
+		// <button data-id={movie._id} onClick={this.showMovie}> See More </button>
 		// remember, you can use .slice() to create a copy of an array between two indices of your choice 
 		const movieList = this.state.movies.map((movie, i) => {
 			return(
@@ -89,7 +90,7 @@ class MovieList extends Component {
 		})
 		return(
 			<div>
-				{this.state.showMovieList === true ? [movieList] : <ShowOneMovie oneMovie={this.state.oneMovie}/> }
+				{this.state.showMovieList === true ? [movieList] : <ShowOneMovie oneMovie={this.state.oneMovie} handleMovieList={this.props.handleMovieList}/> }
 			</div>
 		)
 	}

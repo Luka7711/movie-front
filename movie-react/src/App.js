@@ -7,6 +7,7 @@ import Header from './Header'
 import { Route, Switch, Link } from 'react-router-dom'
 import MovieLink from './MovieLink'
 import MovieList from './MovieList'
+import ShowOneMovie from './ShowOneMovie'
 
 class App extends Component {
   constructor(){
@@ -16,7 +17,9 @@ class App extends Component {
       username: '',
       loggedIn: false,
       message: '',
-      showMovieLink: true
+      showOneMovie: false,
+      showMovieList: true,
+      title: ''
     }
   }
 
@@ -41,20 +44,28 @@ class App extends Component {
     })
   }
 
+  handleMovieList = (title) => {
+    this.setState({
+      showMovieList: true,
+      showOneMovie: false,
+      title: title
+    })
+  }
+
   render(){
-    console.log(this.state)
+    console.log(this.state, '<---main page')
     return (
       <div className="App">
-         <a href='/movieList'>Home</a>
          { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
 
         
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-          <Route exact path="/movieList" render={(props) => <MovieList   />} />
         </Switch>
 
+        {this.state.showMovieList ? <MovieList handleMovieList={this.handleMovieList}/>: null}
+        {this.state.ShowOneMovie? <ShowOneMovie/> : null}
 
       </div>
     );
