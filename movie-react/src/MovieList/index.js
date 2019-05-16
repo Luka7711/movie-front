@@ -53,7 +53,7 @@ class MovieList extends Component {
 		
 			const movieList = this.state.movies.map((movie, i) => {
 			return(
-				<Movie movie={movie}/>
+				<Movie key={i} movie={movie}/>
 			)})	
 		
 		

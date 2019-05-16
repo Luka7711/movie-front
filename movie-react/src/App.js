@@ -58,8 +58,6 @@ class App extends Component {
           <Route exact path="/movieList" render={(props) => <MovieList   />} />
           <Route exact path='/movieList/:number' component={ShowOneMovie} />
         </Switch>
-
-
       </div>
     );
   }
