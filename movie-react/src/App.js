@@ -7,6 +7,7 @@ import Header from './Header'
 import { Route, Switch, Link } from 'react-router-dom'
 import MovieLink from './MovieLink'
 import MovieList from './MovieList'
+import Movie from './Movie'
 
 class App extends Component {
   constructor(){
@@ -45,7 +46,7 @@ class App extends Component {
     console.log(this.state)
     return (
       <div className="App">
-         <a href='/movieList'>Home</a>
+        
          { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
 
         
@@ -53,6 +54,7 @@ class App extends Component {
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
           <Route exact path="/movieList" render={(props) => <MovieList   />} />
+          <Route path='/movieList/:number' component={Movie}/>
         </Switch>
 
 
