@@ -94,6 +94,7 @@ class ShowOneMovie extends Component{
 				<li>{this.state.oneMovie.date}</li>
 				<li>{this.state.oneMovie.day}</li>
 				<li>{this.state.oneMovie.address}</li>
+				<li>park phone#: {this.state.oneMovie.parkphone}</li>
 				<Link to="/movieList">Back</Link>
 			</ul>
 			

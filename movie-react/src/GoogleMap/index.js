@@ -22,7 +22,7 @@ class GoogleMap extends Component {
         lat: props.lat,
         lng: props.lng
       },
-      zoom: 15,
+      zoom: 11,
       park: props.park
     }
   }

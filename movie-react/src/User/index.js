@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import UserCollection from '../UserCollection'
 
 class User extends Component {
 	constructor(){
@@ -11,7 +12,10 @@ class User extends Component {
 
 	render(){
 		return(
-			<h2>Hello World</h2>
+			<div>
+				<h2>Saved List</h2>
+				<UserCollection/>
+			</div>
 		)
 	}
 }

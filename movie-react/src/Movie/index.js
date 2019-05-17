@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 const Movie = (props) => {
 
-console.log(props)
-
 	return(
 		<div key={props.movie._id}>
 			<p>Title: {props.movie.title}</p>
