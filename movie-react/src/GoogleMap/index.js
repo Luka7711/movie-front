@@ -3,7 +3,14 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
  
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => <div style={{
+  width:'15px',
+  height: '15px',
+  borderRadius: '100%',
+  backgroundColor: 'brown'
+}}
+
+>{text}</div>;
  
 class GoogleMap extends Component {
 
@@ -15,18 +22,13 @@ class GoogleMap extends Component {
         lat: props.lat,
         lng: props.lng
       },
-      zoom: 17
+      zoom: 15,
+      park: props.park
     }
   }
 
-  // static defaultProps = {
-  //   center: {
-  //     lat: this.props.lng,
-  //     lng: this.porps
-  //   },
-  //   zoom: 11
-  // };
 
+ 
 
  
   render() {
@@ -43,7 +45,6 @@ class GoogleMap extends Component {
           <AnyReactComponent
             lat={this.state.center.lat}
             lng={this.state.center.lng}
-            text="My Marker"
           />
         </GoogleMapReact>
       </div>

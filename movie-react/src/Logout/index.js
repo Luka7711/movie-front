@@ -32,7 +32,7 @@ class Logout extends Component {
         render() {
             return ( 
                 <div>
-                    <p>{this.state.username}</p>
+                    <Link to='/user'>{this.state.username}</Link>
                     <button onClick={this.signOut}>Sign Out</button>
                 </div>
             )
