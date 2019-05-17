@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 const Movie = (props) => {
 
 	return(
-		<div key={props.movie._id}>
-			<p>Title: {props.movie.title}</p>
+		<div className="movieList" key={props.movie._id}>
+			<p><strong>{props.movie.title}</strong> </p>
 			<p>Date: {props.movie.date}</p>
 			<p>Address: {props.movie.address}</p>
 			<p>Park: {props.movie.park}</p>

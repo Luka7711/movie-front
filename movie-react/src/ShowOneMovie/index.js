@@ -87,7 +87,7 @@ class ShowOneMovie extends Component{
 		console.log(this.state, '<-- current state of one movie')
 		console.log(this.props)
 		return(
-			<div>
+			<div className="oneMovie">
 			<ul>
 				<button onClick={this.handleSaveMovie}>save</button>
 				<li>{this.state.oneMovie.title}</li>

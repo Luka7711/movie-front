@@ -58,8 +58,11 @@ class App extends Component {
     return (
       <div className="App">
         
-         { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
+        { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
         <Link to='/movieList'>Home</Link>
+        <div className='title'>
+            <h2>Movies in the Parks 2019</h2>
+        </div>
         <h2>{this.state.message}</h2>
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />

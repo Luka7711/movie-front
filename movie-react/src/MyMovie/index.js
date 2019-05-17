@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const MyMovie = (props) => {
 	return(
-		<div>
+		<div className="movieList">
 			<p>Title: {props.oneMovie.title}</p>
 			<p>Date: {props.oneMovie.date}</p>
 			<p>Address: {props.oneMovie.address}</p>

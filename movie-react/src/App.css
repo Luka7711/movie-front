@@ -1,3 +1,65 @@
 #root{
 	margin:50px;
 }
+
+body{
+	background:url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+	color: black;
+}
+
+.movieList {
+	
+	width: 270px;
+	height: 250px;
+	border: 2px solid grey;
+	float: left;
+	border-radius: 20px;
+	text-align: center;
+	margin: 20px;
+	background: white;
+}
+
+.movieList a{
+	background: orange;
+	text-decoration: none;
+	padding: 8px;
+	border-radius: 5px;
+	color: white;
+	font-size: 15px;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+	font-weight: 700;
+	background: salmon;
+	padding: 1px 10px;
+	border-radius: 3px;
+	display: inline-block;
+	color: white;
+}
+
+button {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.title{
+	padding: 5px 20px;
+	display:block;
+	width:350px;
+	margin-top:10px;
+	color: white;
+	font-size: 20px;
+}
+
+li{
+	color: white;
+}
+
+li{
+	margin: 0 5px;
+}
+
+
