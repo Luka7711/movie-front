@@ -39,6 +39,24 @@ class UserCollection extends Component{
 		}
 	}
 
+	handleDelete = async(e) => {
+		e.preventDefault()
+		
+		let movieId = await e.target.dataset.id;
+		try{	
+			const response = await fetch(`http://localhost:9000/chicago-cinema/myMovie/${movieId}`, {
+				method: 'DELETE',
+				credentials: 'include'
+			})
+			
+			this.setState({mymovies: this.state.mymovies.filter((movie, i) => movie._id !== movieId)});
+
+			
+		}catch(err){
+			console.log('failed to delete')
+		}
+	}
+
 	render(){
 		console.log('UserCollection')
 		const movieCollection = this.state.mymovies.map((movie, i) => {
@@ -49,6 +67,7 @@ class UserCollection extends Component{
 						<li>{movie.address}</li>
 						<li>{movie.date}</li>
 					</ul>
+					<button data-id={movie._id} onClick={this.handleDelete}>Remove</button>
 				</div>
 			)
 		})

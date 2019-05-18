@@ -8,7 +8,6 @@ const MyMovie = (props) => {
 			<p>Date: {props.oneMovie.date}</p>
 			<p>Address: {props.oneMovie.address}</p>
 			<p>Park: {props.oneMovie.park}</p>
-			
 			<br/>
 		</div>
 	)

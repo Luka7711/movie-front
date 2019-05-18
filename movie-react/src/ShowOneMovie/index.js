@@ -12,7 +12,8 @@ class ShowOneMovie extends Component{
 			showMap: false,
 			oneMovie:{},
 			message: 'Sign in or Sign up',
-			showRegister: false
+			showRegister: false,
+			saveMessage: 'Save'
 		}
 	} 
 
@@ -70,6 +71,9 @@ class ShowOneMovie extends Component{
         				// that is rendered by a route componet check the app.js to see the login
         				// its inside a route
       						console.log('works')
+      						this.setState({
+      							saveMessage:'Saved'
+      						})
     			    	}
 
 
@@ -87,19 +91,25 @@ class ShowOneMovie extends Component{
 		console.log(this.state, '<-- current state of one movie')
 		console.log(this.props)
 		return(
+			
 			<div className="oneMovie">
-			<ul>
-				<button onClick={this.handleSaveMovie}>save</button>
+			
+				<span class="park_name">{this.state.oneMovie.park}</span>
+				<button onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>
+			<ul>	
 				<li>{this.state.oneMovie.title}</li>
 				<li>{this.state.oneMovie.date}</li>
 				<li>{this.state.oneMovie.day}</li>
 				<li>{this.state.oneMovie.address}</li>
 				<li>park phone#: {this.state.oneMovie.parkphone}</li>
-				<Link to="/movieList">Back</Link>
+				
 			</ul>
+				<Link to="/movieList">Back</Link>
+			
 			
 				{ this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
-			</div>
+	
+				</div>
 		)
 	}
 }
