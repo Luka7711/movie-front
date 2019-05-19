@@ -72,7 +72,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-          <Route exact path="/movieList" render={(props) => <MovieList   />} />
+          <Route exact path="/movieList" render={(props) => <MovieList/>} /> 
           <Route exact path='/movieList/:number' render={(props) => <ShowOneMovie {...props} message={this.handleMessage} loggedIn={this.state.loggedIn}/> } />
           {this.state.loggedIn ? <Route exact path='/user' component={User}/>: null}
         </Switch>
