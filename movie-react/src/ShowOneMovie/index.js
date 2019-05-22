@@ -3,6 +3,8 @@ import Movie from '../Movie'
 import {Link} from 'react-router-dom'
 import GoogleMap from '../GoogleMap'
 import Login from '../Login'
+import MovieSearch from '../MovieSearch'
+import Plot from '../Plot'
 
 class ShowOneMovie extends Component{
 	constructor(props){
@@ -13,9 +15,16 @@ class ShowOneMovie extends Component{
 			oneMovie:{},
 			message: 'Sign in or Sign up',
 			showRegister: false,
-			saveMessage: 'Save'
+			saveMessage: 'Save',
+			description:''
 		}
 	} 
+
+	handleDesc = (description) => {
+		this.setState({
+			description: description
+		})
+	}
 
 	componentDidMount(){
 		this.showMovie(this.props.match.params.number)
@@ -108,7 +117,8 @@ class ShowOneMovie extends Component{
 			
 			
 				{ this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
-	
+				<MovieSearch handleDesc={this.handleDesc} title={this.state.oneMovie.title}/>
+				<Plot description = {this.state.description}/>
 				</div>
 		)
 	}
