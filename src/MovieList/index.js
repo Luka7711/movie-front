@@ -49,14 +49,13 @@ class MovieList extends Component {
 
 	
 	render(){
-		console.log(this.state, '<--this is one movie from state')
-		
+		console.log(this.state, '<--this is one movie from state')	
 			const movieList = this.state.movies.map((movie, i) => {
-			return(
-				<Movie key={i} movie={movie}/>
-			)})	
-		
-		
+				return(
+					<Movie key={i} movie={movie}/>
+				)}
+			)
+
 		return(
 			<div>
 					{this.state.showMovieList ? movieList : "loading" } 

@@ -22,7 +22,8 @@ class Logout extends Component {
             if (logoutResponse.status !== 200) {
                 throw Error('Failed to logout');
             }
-            this.props.handleLogout(this.state.username)
+            this.props.handleLogout(this.state.username);
+
 
         } catch (err) {
             console.log(err)
@@ -31,7 +32,7 @@ class Logout extends Component {
 
         render() {
             return ( 
-                <div>
+                <div className="logout_container">
                     <Link to='/user'>{this.state.username}</Link>
                     <button onClick={this.signOut}>Sign Out</button>
                 </div>
