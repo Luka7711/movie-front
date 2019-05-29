@@ -18,7 +18,7 @@ class UserCollection extends Component{
 
 	getMovie = async() => {
 		try{
-			const response = await fetch('http://localhost:9000/chicago-cinema/mylist', {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/chicago-cinema/mylist', {
 				method: 'GET',
 				credentials: 'include'
 			})
@@ -44,7 +44,7 @@ class UserCollection extends Component{
 		
 		let movieId = await e.target.dataset.id;
 		try{	
-			const response = await fetch(`http://localhost:9000/chicago-cinema/myMovie/${movieId}`, {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/myMovie/${movieId}`, {
 				method: 'DELETE',
 				credentials: 'include'
 			})

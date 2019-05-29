@@ -22,7 +22,7 @@ class Login extends Component {
 
 		try{
 
-			const loginResponse = await fetch('http://localhost:9000/auth/login', {
+			const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/auth/login`, {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),

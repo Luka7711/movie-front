@@ -24,7 +24,7 @@ class MovieList extends Component {
 
 		try{
 
-			const response = await fetch('http://localhost:9000/chicago-cinema/movies', {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/movies`, {
 				method:'GET',
 				credentials: 'include'
 			}) 

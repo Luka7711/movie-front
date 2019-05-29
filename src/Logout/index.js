@@ -14,7 +14,7 @@ class Logout extends Component {
         e.preventDefault();
 
         try {
-            const logoutResponse = await fetch('http://localhost:9000/auth/logout', {
+            const logoutResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/auth/logout`, {
                 method: 'GET',
                 credentials: 'include'
             });

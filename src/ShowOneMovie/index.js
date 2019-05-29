@@ -33,7 +33,7 @@ class ShowOneMovie extends Component{
 	showMovie = async(number) => {
 		// take id and add it to state
 
-		const url = `http://localhost:9000/chicago-cinema/movies/${number}`
+		const url = process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/movies/${number}`
 
 		// console.log("URL: ", url);
 
@@ -64,7 +64,7 @@ class ShowOneMovie extends Component{
 
 				try{
 					const movieId = await this.state.oneMovie._id;
-					const response = await fetch(`http://localhost:9000/chicago-cinema/mylist/${movieId}`, {
+					const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/mylist/${movieId}`, {
 						method: 'POST',
 						credentials: 'include',
 			   			body: JSON.stringify(this.state),
