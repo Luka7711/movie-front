@@ -10,7 +10,7 @@ import MovieList from './MovieList'
 import Movie from './Movie'
 import ShowOneMovie from './ShowOneMovie'
 import User from './User'
-
+  
 class App extends Component {
   constructor(){
     super();
