@@ -54,6 +54,24 @@ class App extends Component {
     })
   }
 
+  handleData = async(e) =>{
+    e.preventDefault()
+      try{
+
+        const response = fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/movies`, {
+          method: 'POST',
+          credentials: 'include',
+          body: JSON.stringify(this.state),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      }catch(err){
+        console.log(err)
+      }
+  }
+
+
   render(){
     return (
       
@@ -68,7 +86,7 @@ class App extends Component {
         <div className='message'>
           <h2>{this.state.message}</h2>
         </div>
-        
+        <button onClick={this.handleData}>Add Data</button>
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
