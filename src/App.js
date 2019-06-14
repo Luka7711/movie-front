@@ -35,7 +35,7 @@ class App extends Component {
 
   handleLogout = (username) => {
     this.setState({
-      username: username,
+      username: " ",
       loggedIn: false
     })
   }
@@ -86,7 +86,7 @@ class App extends Component {
         <div className='message'>
           <h2>{this.state.message}</h2>
         </div>
-        <button onClick={this.handleData}>Add Data</button>
+        { this.state.username === "Luka7711" ? <button onClick={this.handleData}>Add Data</button> : null}
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
