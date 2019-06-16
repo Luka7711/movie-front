@@ -93,6 +93,7 @@ class App extends Component {
           <Route exact path="/movieList" render={(props) => <MovieList/>} /> 
           <Route exact path='/movieList/:number' render={(props) => <ShowOneMovie {...props} message={this.handleMessage} loggedIn={this.state.loggedIn}/> } />
           {this.state.loggedIn ? <Route exact path='/user' component={User}/>: null}
+          <MovieList/>
         </Switch>
       </div>
     );

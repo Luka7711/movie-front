@@ -49,7 +49,7 @@ class MovieSearch extends Component {
 	render(){
 		return(
 			<form onSubmit={this.handleSubmit}>
-				<h2>Search movie</h2>
+				<h2>Know more about description ?</h2>
 				<input type="title" onChange={this.handleChange} placeholder="name of movie"/>
 				<button>Search</button>
 			</form>

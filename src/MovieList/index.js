@@ -58,8 +58,16 @@ class MovieList extends Component {
 
 		return(
 			<div>
-					{this.state.showMovieList ? movieList : "loading" } 
-
+				<table>
+					<tr class="main">
+						<th>Title</th>
+						<th>Date</th>
+						<th>Address</th>
+						<th>Park</th>
+						<th>Link</th>
+					</tr>
+						{this.state.showMovieList ? movieList : "loading" } 
+				</table>
 			</div>
 		)
 	}
