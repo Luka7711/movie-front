@@ -8,8 +8,7 @@ const Movie = (props) => {
 			<th> {props.movie.date.split("").splice(0, 10).join("")}</th>
 			<th> {props.movie.address}</th>
 			<th> {props.movie.park}</th>
-			<Link to={`/movieList/${props.movie._id}`}><th>See More</th></Link>
-	
+			<th><Link to={`/movieList/${props.movie._id}`}>See More</Link></th>	
 		</tr>
 	)
 
