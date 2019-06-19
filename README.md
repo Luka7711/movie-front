@@ -29,5 +29,5 @@ User clicks:
 - **Save** movie, app saves movie event in users list
 - **Remove**, app removes movie event from users list
 - **Home**, returns list of movie events in park zones
-
+- **Logout** destroys session, returns user to home page
   
