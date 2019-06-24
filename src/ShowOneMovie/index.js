@@ -16,7 +16,8 @@ class ShowOneMovie extends Component{
 			message: 'Sign in or Sign up',
 			showRegister: false,
 			saveMessage: 'Save',
-			description:''
+			description:'',
+			movieAbout:''
 		}
 	} 
 
@@ -29,39 +30,49 @@ class ShowOneMovie extends Component{
 	componentDidMount(){
 		this.showMovie(this.props.match.params.number)
 	}
-
+	
 	showMovie = async(number) => {
 		// take id and add it to state
+		try{
+			const url = process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/movies/${number}`
+		
+			let response = await fetch(url, {
+				method: 'GET',
+				credentials: 'include'
+			});
+		
+			if(response.status !== 200){
+				console.log('failed to show')
+			}
+			const moviesParsed = await response.json();
+			console.log(moviesParsed.data)
 
-		const url = process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/movies/${number}`
+			this.setState({
+				oneMovie: moviesParsed.data,
+				showMap: true
+			})
 
-		// console.log("URL: ", url);
-
-		const response = await fetch(url, {
-			method: 'GET',
-			credentials: 'include'
-		});
-
-		 if(response.status !== 200){
-			console.log('failed to show')
+			response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/plot/${this.state.oneMovie.title}`, {
+				method: 'GET',
+				credentials: 'include'
+			})
+			
+			if(response.status === 200){
+				const movieParsed = await response.json()
+				this.setState({
+					movieAbout: movieParsed.data
+				})
+			}
+		}catch(err){
+			console.log(err)
 		}
-		const moviesParsed = await response.json();
-
-		console.log(moviesParsed.data)
-
-		this.setState({
-			oneMovie: moviesParsed.data,
-			showMap: true
-		})
 	}
 
 	//if user logged in, save current item to user movie list
 	//need to pass movie id in fetch request
 	handleSaveMovie = async(e) => {
-		e.preventDefault()
-			
+		e.preventDefault()		
 			if(this.props.loggedIn){
-
 				try{
 					const movieId = await this.state.oneMovie._id;
 					const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/mylist/${movieId}`, {
@@ -72,7 +83,6 @@ class ShowOneMovie extends Component{
          		 			'Content-Type': 'application/json'
        			        }
     		    	})
-
       				const parsedResponse = await response.json();
 
       					if(parsedResponse.status == 200){
@@ -84,42 +94,32 @@ class ShowOneMovie extends Component{
       							saveMessage:'Saved'
       						})
     			    	}
-
-
     			} 
     			catch (err) {
     			  console.log(err)
     			 }
 			}else{				
 				this.props.message(this.state.message)
+		}	
 	}	
-}
-
 	render(){
-		// <Movie movie={this.state.oneMovie}/>
-		console.log(this.state, '<-- current state of one movie')
-		console.log(this.props)
 		return(
-			
-			<div className="oneMovie">
-			
+			<div className="oneMovie">		
 				<span class="park_name">{this.state.oneMovie.park}</span>
 				<button onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>
-			<ul>	
-				<li>{this.state.oneMovie.title}</li>
-				<li>{this.state.oneMovie.date}</li>
-				<li>{this.state.oneMovie.day}</li>
-				<li>{this.state.oneMovie.address}</li>
-				<li>park phone#: {this.state.oneMovie.parkphone}</li>
-				
-			</ul>
+				<ul>	
+					<li>{this.state.oneMovie.title}</li>
+					<li>{this.state.oneMovie.date}</li>
+					<li>{this.state.oneMovie.day}</li>
+					<li>{this.state.oneMovie.address}</li>
+					<li>park phone#: {this.state.oneMovie.parkphone}</li>
+					<li>{this.state.movieAbout}</li>
+				</ul>
 				<Link to="/movieList">Back</Link>
-			
-			
 				{ this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
 				<MovieSearch handleDesc={this.handleDesc} title={this.state.oneMovie.title}/>
 				<Plot description = {this.state.description}/>
-				</div>
+			</div>
 		)
 	}
 }
