@@ -17,6 +17,7 @@ class MovieSearch extends Component {
 	handleSubmit = async(e) => {
 		e.preventDefault();
 		try{
+			
 			const response = await fetch( process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/plot/${this.state.title}`, {
 				method: 'GET',
 				credentials: 'include'
