@@ -19,7 +19,7 @@ class MovieList extends Component {
 			nextItem: 20
 		}	
 	} 
-
+	
 	componentDidMount(){
 		this.getMovies()
 	};
@@ -59,52 +59,36 @@ class MovieList extends Component {
 		try{
 			if(this.state.pageNum < this.state.totalPageNum){
 				await this.setState({
-					movieList:this.state.movies.slice(this.state.prev, this.state.nextItem)
-
-				})
-				await this.setState({
+					movieList:this.state.movies.slice(this.state.prev, this.state.nextItem),
 					prev: this.state.nextItem,
 					nextItem: this.state.nextItem + 10,
 					pageNum: this.state.pageNum + 1
 				})
-				
 			}else if(this.state.pageNum === this.state.totalPageNum){
 				console.log('stop')
 			}	
 		}catch(err){
 			console.log(err)
 		}
-	}
-
-	
-		handlePrev = async() => {
-			try{
-				if(this.state.pageNum > 1){
-					console.log("we get back")
-					await this.setState({
-						nextItem: this.state.prev,
-						prev: this.state.prev - 10
-					})
-
-					await this.setState({
-						movieList:this.state.movies.slice(this.state.prev, this.state.nextItem)
-					})
-
-					await this.setState({
-						pageNum: this.state.pageNum - 1
-					})
-				}
-				else{
-					console.log("stop")
-				}
-			}catch(err){
-				console.log(err)
+	}	
+	handlePrev = async() => {
+		try{
+			if(this.state.pageNum > 1){
+				await this.setState({
+					movieList:this.state.movies.slice(this.state.prev-20, this.state.nextItem-20),
+					prev: this.state.prev - 10,
+					nextItem: this.state.prev,
+					pageNum: this.state.pageNum - 1
+				})
+			}else {
+				console.log("stop")
 			}
+		}catch(err){
+			console.log(err)
 		}
+	}
 	
 	render(){
-		// console.log(this.state, '<--this is one movie from state')
-		console.log(this.state.movieList)	
 			let moviePage = this.state.movieList.map((movie, i) => {
 				return(
 					<tbody key={i}>
@@ -112,7 +96,6 @@ class MovieList extends Component {
 					</tbody>
 				)}
 			)		
-
 		return(
 			<div>
 				<table>
