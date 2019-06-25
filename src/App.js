@@ -21,7 +21,9 @@ class App extends Component {
       message: '',
       showMovieLink: true,
       showMessage: false,
-      message: ''
+      message: '',
+      city:'Chicago',
+      code:'USA'
     }
   }
 
@@ -71,18 +73,40 @@ class App extends Component {
       }
   }
 
+  componentDidMount(){
+    this.getWeather()
+  }
+
+  getWeather = async() => {
+    try{
+       let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.city},${this.state.code}&APPID=24efa750a9ff8ae4b68abe4adc16f424`)
+      .then(results => {
+        return results.json() 
+      })
+      this.setState({
+        fahren: Math.floor((Number(response.main.temp) - 273.15) * 9/5 + 32) + "°F",
+        cels: Math.floor(Number(response.main.temp) - 273.15) + "°C"
+      })
+    }catch(err){
+      console.log(err)
+    }
+
+  }
+
+
 
   render(){
+    console.log(this.state)
     return (
       
       <div className="App">
       <Link to='/movieList'>Home</Link>
         { this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
-
         <div className='title'>
             <h2>Movies in the Parks 2019</h2>
         </div>
-        
+        <span>{this.state.fahren}/{this.state.cels}</span>
+
         <div className='message'>
           <h2>{this.state.message}</h2>
         </div>
