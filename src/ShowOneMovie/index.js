@@ -17,7 +17,8 @@ class ShowOneMovie extends Component{
 			showRegister: false,
 			saveMessage: 'Save',
 			description:'',
-			movieAbout:''
+			movieAbout:'',
+			poster:''
 		}
 	} 
 
@@ -60,7 +61,8 @@ class ShowOneMovie extends Component{
 			if(response.status === 200){
 				const movieParsed = await response.json()
 				this.setState({
-					movieAbout: movieParsed.data
+					movieAbout: movieParsed.data,
+					poster: movieParsed.poster
 				})
 			}
 		}catch(err){
@@ -114,6 +116,7 @@ class ShowOneMovie extends Component{
 					<li>{this.state.oneMovie.address}</li>
 					<li>park phone#: {this.state.oneMovie.parkphone}</li>
 					<li>{this.state.movieAbout}</li>
+					<img src={this.state.poster}/>
 				</ul>
 				<Link to="/movieList">Back</Link>
 				{ this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }

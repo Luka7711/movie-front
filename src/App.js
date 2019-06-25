@@ -23,8 +23,7 @@ class App extends Component {
       showMessage: false,
       message: '',
       city:'Chicago',
-      code:'USA',
-      temp:''
+      code:'USA'
     }
   }
 
@@ -85,7 +84,8 @@ class App extends Component {
         return results.json() 
       })
       this.setState({
-        temp:response.main.temp
+        fahren: Math.floor((Number(response.main.temp) - 273.15) * 9/5 + 32) + "°F",
+        cels: Math.floor(Number(response.main.temp) - 273.15) + "°C"
       })
     }catch(err){
       console.log(err)
@@ -105,6 +105,8 @@ class App extends Component {
         <div className='title'>
             <h2>Movies in the Parks 2019</h2>
         </div>
+        <span>{this.state.fahren}/{this.state.cels}</span>
+
         <div className='message'>
           <h2>{this.state.message}</h2>
         </div>
