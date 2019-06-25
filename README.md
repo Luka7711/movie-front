@@ -3,11 +3,13 @@
 How to start application
 
 run in your terminal
-* npm start 
-
+```
+npm start 
+```
 run back-end app in separate terminal
-* nodemon 
-
+```
+nodemon 
+```
 
 ## User Stories:
 
@@ -17,15 +19,15 @@ User opens web application, and finds next:
 * Register link
 * List of movies in park zones
 
-###Actions:
+## Actions:
 User clicks:
-**Login**, link redirects to login form
-**Register**, link redirects to registration form
-**See More**, link redirects to the page with movie details
-**Search**, shows description of movie (user should type title of movie)
-**UserName**, shows the list of user's movie events he owns 
-**Save** movie, app saves movie event in users list
-**Remove**, app removes movie event from users list
-**Home**, returns list of movie events in park zones
-
+- **Login**, link redirects to login form
+- **Register**, link redirects to registration form
+- **See More**, link redirects to the page with movie details
+- **Search**, shows description of movie (user should type title of movie)
+- **UserName**, shows the list of user's movie events he owns 
+- **Save** movie, app saves movie event in users list
+- **Remove**, app removes movie event from users list
+- **Home**, returns list of movie events in park zones
+- **Logout** destroys session, returns user to home page
   
