@@ -22,12 +22,16 @@ class MovieSearch extends Component {
 				method: 'GET',
 				credentials: 'include'
 			})
-
-			console.log(response.message)
-			if(response.status == 200){
-				console.log(this.state.title)
-				const movieParsed = await response.json();
-				
+		 	
+		 	let movieParsed = await response.json();
+			
+			if(movieParsed.status === 404){
+				this.setState({
+					description: movieParsed.message
+				})
+				this.props.handleDesc(this.state.description)
+			}
+			else if(movieParsed.status === 200){
 				this.setState({
 					description: movieParsed.data
 				})

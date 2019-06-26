@@ -41,30 +41,30 @@ class ShowOneMovie extends Component{
 				method: 'GET',
 				credentials: 'include'
 			});
-		
-			if(response.status !== 200){
-				console.log('failed to show')
-			}
 			const moviesParsed = await response.json();
-			console.log(moviesParsed.data)
 
 			this.setState({
 				oneMovie: moviesParsed.data,
 				showMap: true
 			})
-
+			//second call to get poster and description
 			response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/plot/${this.state.oneMovie.title}`, {
 				method: 'GET',
 				credentials: 'include'
 			})
-			
-			if(response.status === 200){
-				const movieParsed = await response.json()
+			let movieParsed = await response.json();
+			if(movieParsed.status == 200){
 				this.setState({
 					movieAbout: movieParsed.data,
 					poster: movieParsed.poster
 				})
-			}
+			}else{
+				this.setState({
+					movieAbout: movieParsed.message,
+					poster: ''
+				})
+				console.log('not works')	
+			}	
 		}catch(err){
 			console.log(err)
 		}
@@ -107,7 +107,7 @@ class ShowOneMovie extends Component{
 	render(){
 		return(
 			<div className="oneMovie">		
-				<span class="park_name">{this.state.oneMovie.park}</span>
+				<span className="park_name">{this.state.oneMovie.park}</span>
 				<button onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>
 				<ul>	
 					<li>{this.state.oneMovie.title}</li>
