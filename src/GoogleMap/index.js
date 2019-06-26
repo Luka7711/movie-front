@@ -32,8 +32,6 @@ class GoogleMap extends Component {
 
  
   render() {
-    console.log(this.props.lng, '<--this is props')
-    console.log(this.state, '<--- state object')
     return (
       // Important! Always set the container height explicitly
       <div className="map" style={{ height: '50vh', width: '30%' }}>
