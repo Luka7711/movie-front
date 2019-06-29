@@ -41,26 +41,28 @@ class ShowOneMovie extends Component{
 				method: 'GET',
 				credentials: 'include'
 			});
-			const moviesParsed = await response.json();
 
+			const moviesParsed = await response.json();
 			this.setState({
 				oneMovie: moviesParsed.data,
 				showMap: true
 			})
-			//second call to get poster and description
-			response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/plot/${this.state.oneMovie.title}`, {
+			
+			let response2 = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/plot/${this.state.oneMovie.title}`, {
 				method: 'GET',
 				credentials: 'include'
 			})
-			let movieParsed = await response.json();
-			if(movieParsed.status == 200){
+			const detailsMovie = await response2.json();
+			
+			//second call to get poster and description
+			if(detailsMovie.status == 200){
 				this.setState({
-					movieAbout: movieParsed.data,
-					poster: movieParsed.poster
+					movieAbout: detailsMovie.data,
+					poster: detailsMovie.poster
 				})
 			}else{
 				this.setState({
-					movieAbout: movieParsed.message,
+					movieAbout: detailsMovie.message,
 					poster: ''
 				})
 				console.log('not works')	
@@ -122,7 +124,7 @@ class ShowOneMovie extends Component{
 				{ this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
 				<MovieSearch handleDesc={this.handleDesc} title={this.state.oneMovie.title}/>
 				<Plot description = {this.state.description}/>
-			</div>
+			</div> 
 		)
 	}
 }
