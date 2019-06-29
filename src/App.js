@@ -94,6 +94,20 @@ class App extends Component {
     }
 
   }
+
+  handleDelete = async(e) => {
+    e.preventDefault()
+    try{
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/movies/delete/all`, {
+        method: 'DELETE',
+        credentials:'include'
+      })
+      console.log("deleted")
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   render(){
     console.log(this.state)
     return (
@@ -113,7 +127,8 @@ class App extends Component {
         </div>
         
         {this.state.username === "Luka7711" ? <button onClick={this.handleData}>Add Data</button> : null}
-        
+        {this.state.username === "Luka7711" ? <button onClick={this.handleDelete}>Delete Data</button> : null}
+
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
