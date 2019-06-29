@@ -22,9 +22,7 @@ class App extends Component {
       message: '',
       showMovieLink: true,
       showMessage: false,
-      message: '',
-      city:'Chicago',
-      code:'USA'
+      message: ''
     }
   }
 
@@ -77,22 +75,27 @@ class App extends Component {
   componentDidMount(){
     this.getWeather()
   }
-
+  
   getWeather = async() => {
     try{
-       let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.city},${this.state.code}&APPID=24efa750a9ff8ae4b68abe4adc16f424`)
-      .then(results => {
-        return results.json() 
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/weather/in/chicago`, {
+        method:"GET",
+        credentials:"include"
       })
-      this.setState({
-        fahren: Math.floor((Number(response.main.temp) - 273.15) * 9/5 + 32) + "°F",
-        cels: Math.floor(Number(response.main.temp) - 273.15) + "°C",
-        weatherCondit: response.weather[0].main.toLowerCase()
-      })
+      
+      if(response.status == 200){
+        const dataParsed = await response.json()
+        this.setState({
+          fahren: dataParsed.fahren,
+          cels: dataParsed.cels,
+          weatherCondit: dataParsed.weatherCondit
+        })
+      }else{
+        console.log('something went wrong')
+      }   
     }catch(err){
       console.log(err)
     }
-
   }
 
   handleDelete = async(e) => {
