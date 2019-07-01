@@ -108,22 +108,31 @@ class ShowOneMovie extends Component{
 	}	
 	render(){
 		return(
-			<div className="oneMovie">		
-				<span className="park_name">{this.state.oneMovie.park}</span>
-				<button onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>
-				<ul>	
-					<li>{this.state.oneMovie.title}</li>
-					<li>{this.state.oneMovie.date}</li>
-					<li>{this.state.oneMovie.day}</li>
-					<li>{this.state.oneMovie.address}</li>
-					<li>park phone#: {this.state.oneMovie.parkphone}</li>
-					<li>{this.state.movieAbout}</li>
-					<img src={this.state.poster}/>
-				</ul>
-				<Link to="/movieList">Back</Link>
-				{ this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
-				<MovieSearch handleDesc={this.handleDesc} title={this.state.oneMovie.title}/>
-				<Plot description = {this.state.description}/>
+		
+				
+			<div className="oneMovie">	
+				<div className="content">
+					<img src={this.state.poster} className="poster"/>
+					<div className="description">	
+						<span className="park_name">{this.state.oneMovie.park}</span>
+						<button onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>
+						<ul className="movieDescription">	
+							<li><h1>{this.state.oneMovie.title}</h1></li>
+							<li>Date: {this.state.oneMovie.date}</li>
+							<li>Day:{this.state.oneMovie.day}</li>
+							<li>Address: {this.state.oneMovie.address}</li>
+							<li>Park phone#: {this.state.oneMovie.parkphone}</li>
+							<li>Description: {this.state.movieAbout}</li>
+						</ul>
+						
+					</div>
+					{this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
+					
+				</div>
+				<div>
+					<MovieSearch handleDesc={this.handleDesc} title={this.state.oneMovie.title}/>
+					<Plot description = {this.state.description}/>
+				</div>
 			</div> 
 		)
 	}

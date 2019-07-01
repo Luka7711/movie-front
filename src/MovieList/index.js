@@ -97,7 +97,7 @@ class MovieList extends Component {
 				)}
 			)		
 		return(
-			<div>
+			<div className="movieList">
 				<table>
 					<tbody>
 						<tr className="main">
@@ -110,9 +110,9 @@ class MovieList extends Component {
 					</tbody>
 						{this.state.showMovieList ? moviePage : "loading" }
 				</table>
-				<button onClick={this.handlePrev}>prev</button>
+				<button onClick={this.handlePrev} className="btn"><i className="fas fa-arrow-circle-left"></i></button>
 				<span>-{this.state.pageNum}-</span>
-				<button onClick={this.handleNext}>next</button>
+				<button onClick={this.handleNext} className="btn"><i className="fas fa-arrow-circle-right"></i></button>
 			</div>
 		)
 	}

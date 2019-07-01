@@ -75,7 +75,7 @@ class App extends Component {
   componentDidMount(){
     this.getWeather()
   }
-  
+
   getWeather = async() => {
     try{
       const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/weather/in/chicago`, {
@@ -116,14 +116,17 @@ class App extends Component {
     return (
       
       <div className="App">
-        <Link to='/movieList'>Home</Link>
+        <Link to='/movieList'><i className="fas fa-home"></i>Home</Link>
         {this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
         
+        {this.state.weatherCondit ? <Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> :null}
+       
         <div className='title'>
-          <h2>Movies in the Parks 2019</h2>
+          <h2 className="title_text">Movies at Chicago parks 2019</h2>
+          <i className="fas fa-film"></i>
         </div>
         
-        {this.state.weatherCondit ? <Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> :null}
+
         
         <div className='message'>
           <h2>{this.state.message}</h2>

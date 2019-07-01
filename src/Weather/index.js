@@ -40,8 +40,8 @@ class Weather extends Component{
 		console.log(this.state)
 		// console.log(this.props.weatherCondit)
 		return(
-			<div>
-				<h2>{this.props.fahren} / {this.props.cels}</h2>
+			<div className="weather">
+				<h2 className="weatherDetails">{this.props.fahren} / {this.props.cels}</h2>
 				<img src={this.state.imageURL} alt="weather"/><br/>
 				<span>{this.props.weatherCondit}</span>
 			</div>

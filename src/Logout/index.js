@@ -32,9 +32,11 @@ class Logout extends Component {
 
         render() {
             return ( 
-                <div className="logout_container">
-                    <Link to='/user'>{this.state.username}</Link>
-                    <button onClick={this.signOut}>Sign Out</button>
+                <div className="head">
+                    <ul class="header">
+                        <li><Link to='/user'><i class="fas fa-user"></i>{this.state.username}</Link></li>
+                        <li><button onClick={this.signOut}>Sign Out</button></li>
+                    </ul>
                 </div>
             )
         }
