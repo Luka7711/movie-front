@@ -11,6 +11,7 @@ import Movie from './Movie'
 import ShowOneMovie from './ShowOneMovie'
 import User from './User'
 import Weather from './Weather'  
+import MovieFind from './MovieFind'
 
 class App extends Component {
   constructor(){
@@ -22,7 +23,8 @@ class App extends Component {
       message: '',
       showMovieLink: true,
       showMessage: false,
-      message: ''
+      message: '',
+      foundMovies: ''
     }
   }
 
@@ -53,6 +55,18 @@ class App extends Component {
     this.setState({
       message: message
     })
+  }
+
+  handleMovies = (movie) => {
+    this.setState({
+      movies: movie
+    })
+  }
+
+  handleFindMovies = (movieData) => {
+     this.setState({
+        foundMovies: movieData
+     })
   }
 
   handleData = async(e) =>{
@@ -111,6 +125,8 @@ class App extends Component {
     }
   }
 
+
+
   render(){
     console.log(this.state)
     return (
@@ -122,12 +138,11 @@ class App extends Component {
         {this.state.weatherCondit ? <Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> :null}
        
         <div className='title'>
-          <h2 className="title_text">Movies at Chicago parks 2019</h2>
+          <h2 className="title_text">Movies at Chicago parks</h2>
           <i className="fas fa-film"></i>
+          {this.state.movies? <MovieFind allmovies = {this.state.movies} handleFindMovies={this.handleFindMovies}/> : null}
         </div>
-        
 
-        
         <div className='message'>
           <h2>{this.state.message}</h2>
         </div>
@@ -138,10 +153,9 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-          <Route exact path="/movieList" render={(props) => <MovieList/>} /> 
+          <Route exact path="/movieList" render={(props) => <MovieList movies={this.handleMovies}/>} /> 
           <Route exact path='/movieList/:number' render={(props) => <ShowOneMovie {...props} message={this.handleMessage} loggedIn={this.state.loggedIn}/> } />
           {this.state.loggedIn ? <Route exact path='/user' component={User}/>: null}
-          <MovieList/>
         </Switch>
       </div>
     );

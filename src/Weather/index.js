@@ -31,17 +31,17 @@ class Weather extends Component{
 					imageURL:`http://openweathermap.org/img/wn/${this.state.items[i]}@2x.png`
 				})
 			}else{
-				console.log("nope fuck")
+				console.log("nope")
 			}
 		})
 	}
 	
 	render(){
-		console.log(this.state)
 		// console.log(this.props.weatherCondit)
+		console.log(this.state)
 		return(
 			<div className="weather">
-				<h2 className="weatherDetails">{this.props.fahren} / {this.props.cels}</h2>
+				<h2 className="weatherDetails"><i className="fas fa-temperature-low"></i> {this.props.fahren} / {this.props.cels}</h2>
 				<img src={this.state.imageURL} alt="weather"/><br/>
 				<span>{this.props.weatherCondit}</span>
 			</div>

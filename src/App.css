@@ -81,6 +81,8 @@ h2 {
 
 .park_name{
 	background-color:lightgreen;
+	color:black;
+	font-weight: 700;
 	padding: 5px 10px;
 }
 
@@ -170,6 +172,10 @@ h2 {
 
 .fa-search{
 	color:orange;
+}
+
+.fa-temperature-low {
+	color:red;
 }
 
 

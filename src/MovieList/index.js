@@ -48,8 +48,7 @@ class MovieList extends Component {
 				movieList: this.state.movies.slice(0, 10)
 			})
 
-			
-
+			this.props.movies(this.state.movies)
 		}catch(err){
 			console.log(err)
 		}
