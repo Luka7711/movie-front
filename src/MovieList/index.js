@@ -110,7 +110,7 @@ class MovieList extends Component {
 						{this.state.showMovieList ? moviePage : "loading" }
 				</table>
 				<button onClick={this.handlePrev} className="btn"><i className="fas fa-arrow-circle-left"></i></button>
-				<span>-{this.state.pageNum}-</span>
+				<span className="page">-{this.state.pageNum}-</span>
 				<button onClick={this.handleNext} className="btn"><i className="fas fa-arrow-circle-right"></i></button>
 			</div>
 		)
