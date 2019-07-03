@@ -63,7 +63,7 @@ class ShowOneMovie extends Component{
 			}else{
 				this.setState({
 					movieAbout: detailsMovie.message,
-					poster: ''
+					poster: 'http://sadamatsu-hp.com/wp-content/uploads/2016/12/film-strip-template-elrgugds.jpg'
 				})
 				console.log('not works')	
 			}	
@@ -107,12 +107,11 @@ class ShowOneMovie extends Component{
 		}	
 	}	
 	render(){
+		console.log(this.state.poster.length)
 		return(
-		
-				
 			<div className="oneMovie">	
 				<div className="content">
-					<img src={this.state.poster} className="poster"/>
+					<img src={this.state.poster} className="poster" alt="Hello"/>
 					<div className="description">	
 						<span className="park_name">{this.state.oneMovie.park}</span>
 						<button onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>

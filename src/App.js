@@ -12,6 +12,7 @@ import ShowOneMovie from './ShowOneMovie'
 import User from './User'
 import Weather from './Weather'  
 import MovieFind from './MovieFind'
+import MovieResult from './MovieResult'
 
 class App extends Component {
   constructor(){
@@ -24,7 +25,8 @@ class App extends Component {
       showMovieLink: true,
       showMessage: false,
       message: '',
-      foundMovies: ''
+      foundMovies: '',
+      search: false
     }
   }
 
@@ -65,7 +67,8 @@ class App extends Component {
 
   handleFindMovies = (movieData) => {
      this.setState({
-        foundMovies: movieData
+        foundMovies: movieData,
+        search:true
      })
   }
 
@@ -126,6 +129,12 @@ class App extends Component {
   }
 
 
+  handleHide = () => {
+    this.setState({
+      search:false
+    })
+  }
+
 
   render(){
     console.log(this.state)
@@ -141,7 +150,9 @@ class App extends Component {
           <h2 className="title_text">Movies at Chicago parks</h2>
           <i className="fas fa-film"></i>
           {this.state.movies? <MovieFind allmovies = {this.state.movies} handleFindMovies={this.handleFindMovies}/> : null}
+          {this.state.search === true ? <MovieResult hide={this.handleHide} foundMovies={this.state.foundMovies}/> :null}
         </div>
+
 
         <div className='message'>
           <h2>{this.state.message}</h2>
