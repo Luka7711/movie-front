@@ -140,7 +140,7 @@ class App extends Component {
     return (
       
       <div className="App">
-        <Link to='/movieList'><i className="fas fa-home"></i>Home</Link>
+        <Link to='/'><i className="fas fa-home"></i>Home</Link>
         {this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
         
         {this.state.weatherCondit ? <Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> :null}
@@ -163,7 +163,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
           <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-          <Route exact path="/movieList" render={(props) => <MovieList movies={this.handleMovies}/>} /> 
+          <Route exact path="/" render={(props) => <MovieList movies={this.handleMovies}/>} /> 
           <Route exact path='/movieList/:number' render={(props) => <ShowOneMovie {...props} message={this.handleMessage} loggedIn={this.state.loggedIn}/> } />
           {this.state.loggedIn ? <Route exact path='/user' component={User}/>: null}
         </Switch>
