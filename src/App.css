@@ -178,7 +178,9 @@ h2 {
 	color:red;
 }
 
-
+.result{
+	list-style-type: none;
+}
 
 
 

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Result = (props) => {
 	return(
-		<ul key={props.movie._id}>
+		<ul className="result" key={props.movie._id}>
 			<li>{props.movie.title}</li>
 			<li>{props.movie.date}</li>
 			<li>{props.movie.address}</li>

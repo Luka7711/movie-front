@@ -3,8 +3,6 @@ import Movie from '../Movie'
 import {Link} from 'react-router-dom'
 import GoogleMap from '../GoogleMap'
 import Login from '../Login'
-import MovieSearch from '../MovieSearch'
-import Plot from '../Plot'
 
 class ShowOneMovie extends Component{
 	constructor(props){
@@ -64,11 +62,13 @@ class ShowOneMovie extends Component{
 				this.setState({
 					movieAbout: detailsMovie.message,
 					poster: 'http://sadamatsu-hp.com/wp-content/uploads/2016/12/film-strip-template-elrgugds.jpg'
-				})
-				console.log('not works')	
+				})	
 			}	
 		}catch(err){
-			console.log(err)
+			this.setState({
+							movieAbout:"Not available",
+			poster:'http://sadamatsu-hp.com/wp-content/uploads/2016/12/film-strip-template-elrgugds.jpg'
+			})
 		}
 	}
 
@@ -126,11 +126,6 @@ class ShowOneMovie extends Component{
 						
 					</div>
 					{this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
-					
-				</div>
-				<div>
-					<MovieSearch handleDesc={this.handleDesc} title={this.state.oneMovie.title}/>
-					<Plot description = {this.state.description}/>
 				</div>
 			</div> 
 		)

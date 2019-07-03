@@ -5,7 +5,6 @@ import Logout from './Logout'
 import Login from './Login'
 import Header from './Header'
 import { Route, Switch, Link } from 'react-router-dom'
-import MovieLink from './MovieLink'
 import MovieList from './MovieList'
 import Movie from './Movie'
 import ShowOneMovie from './ShowOneMovie'
@@ -147,7 +146,7 @@ class App extends Component {
         {this.state.weatherCondit ? <Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> :null}
        
         <div className='title'>
-          <h2 className="title_text">Movies at Chicago parks</h2>
+          <h2 className="title_text">Movies in Chicago parks</h2>
           <i className="fas fa-film"></i>
           {this.state.movies? <MovieFind allmovies = {this.state.movies} handleFindMovies={this.handleFindMovies}/> : null}
           {this.state.search === true ? <MovieResult hide={this.handleHide} foundMovies={this.state.foundMovies}/> :null}
