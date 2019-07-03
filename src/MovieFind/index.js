@@ -41,7 +41,7 @@ class MovieFind extends Component{
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<h2>search movie <i className="fas fa-search"></i></h2>
-				<input placeholder="Title" onChange={this.handleChange} name="title"/>
+				<input placeholder="Title" onChange={this.handleChange} name="title" className="searchBar"/>
 				<button>Search</button>
 			</form>
 		)
