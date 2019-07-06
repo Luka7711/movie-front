@@ -64,8 +64,9 @@ class UserCollection extends Component{
 				<div key={i}>
 					<ul>
 						<li>{movie.title}</li>
-						<li>{movie.address}</li>
-						<li>{movie.date}</li>
+						<li>Address: {movie.address}</li>
+						<li>Date: {movie.date}</li>
+						<li>Phone: {movie.parkphone}</li>
 					</ul>
 					<button data-id={movie._id} onClick={this.handleDelete}>Remove</button>
 				</div>
