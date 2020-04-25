@@ -43,11 +43,11 @@ class MovieList extends Component {
 				showMovieList: true
 			})
 
-			this.setState({
+			await this.setState({
 				totalPageNum: Math.floor(this.state.movies.length/10),
 				movieList: this.state.movies.slice(0, 10)
 			})
-
+			console.log(this.state.movieList)
 			this.props.movies(this.state.movies)
 		}catch(err){
 			console.log(err)

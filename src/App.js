@@ -12,6 +12,9 @@ import User from './User'
 import Weather from './Weather'  
 import MovieFind from './MovieFind'
 import MovieResult from './MovieResult'
+import {Navbar, Button, FormControl, Form, 
+        Nav, NavItem, NavDropdown, DropdownButton, 
+        MenuItem, CollapsibleNav} from 'react-bootstrap';
 
 class App extends Component {
   constructor(){
@@ -136,37 +139,53 @@ class App extends Component {
 
 
   render(){
-    console.log(this.state)
-    return (
-      
+    return (      
       <div className="App">
-        <Link to='/'><i className="fas fa-home"></i>Home</Link>
-        {this.state.loggedIn === false ? <Header /> : <Logout username={this.state.username} handleLogout={this.handleLogout}/> }
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <div className="container-fluid pl-5">
+          <Navbar.Brand href="/" className="mr-5" style={{fontFamily:"Pacifico"}}>Cinematica</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
         
-        {this.state.weatherCondit ? <Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> :null}
-       
-        <div className='title'>
-          <h2 className="title_text">Movies in Chicago parks</h2>
-          <i className="fas fa-film"></i>
-          {this.state.movies? <MovieFind allmovies = {this.state.movies} handleFindMovies={this.handleFindMovies}/> : null}
-          {this.state.search === true ? <MovieResult hide={this.handleHide} foundMovies={this.state.foundMovies}/> :null}
-        </div>
+          <Navbar.Collapse id="basic-navbar-nav">
+           
+            <Nav className="mr-auto">
+              <Nav.Link href="/">Schedule</Nav.Link>
+              <Nav.Link href="/user">Movies</Nav.Link>
+              {this.state.loggedIn === true ? <Logout username={this.state.username} handleLogout={this.handleLogout}/> :false}
+            </Nav>
+            
+            <MovieFind allmovies = {this.state.movies} handleFindMovies={this.handleFindMovies}/>
+            {this.state.loggedIn === false ? <Header /> :null}
+          </Navbar.Collapse>
+          </div>
+        </Navbar>
 
-
-        <div className='message'>
-          <h2>{this.state.message}</h2>
-        </div>
+        <div className="container-fluid">
         
-        {this.state.username === "Luka7711" ? <button onClick={this.handleData}>Add Data</button> : null}
-        {this.state.username === "Luka7711" ? <button onClick={this.handleDelete}>Delete Data</button> : null}
+          { this.state.weatherCondit ?
+            <Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> 
+          :null }
+        
+           <div className='title'>
+             <h2 className="title_text">Movies in Chicago</h2>
+             {this.state.search === true ? <MovieResult hide={this.handleHide} foundMovies={this.state.foundMovies}/> :null}
+           </div>
 
-        <Switch>
-          <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
-          <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-          <Route exact path="/" render={(props) => <MovieList movies={this.handleMovies}/>} /> 
-          <Route exact path='/movieList/:number' render={(props) => <ShowOneMovie {...props} message={this.handleMessage} loggedIn={this.state.loggedIn}/> } />
-          {this.state.loggedIn ? <Route exact path='/user' component={User}/>: null}
-        </Switch>
+           <div className='message'>
+            <h2>{this.state.message}</h2>
+           </div>
+        
+           {this.state.username === "Luka7711" ? <button onClick={this.handleData}>Add Data</button> : null}
+           {this.state.username === "Luka7711" ? <button onClick={this.handleDelete}>Delete Data</button> : null}
+
+           <Switch>
+             <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
+             <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
+             <Route exact path="/" render={(props) => <MovieList movies={this.handleMovies}/>} /> 
+             <Route exact path='/movieList/:number' render={(props) => <ShowOneMovie {...props} message={this.handleMessage} loggedIn={this.state.loggedIn}/> } />
+             {this.state.loggedIn ? <Route exact path='/user' component={User}/>: null}
+           </Switch>
+        </div>
       </div>
     );
   }

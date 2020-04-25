@@ -1,5 +1,15 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {Form, FormControl, Button} from "react-bootstrap"
+
+const style = {
+	input:{
+		marginRight: "1rem",
+    	borderRadius: "2px",
+    	border:"none"
+	}
+}
+
 class MovieFind extends Component{
 	constructor(props){
 		super(props);
@@ -39,11 +49,10 @@ class MovieFind extends Component{
 	render(){
 		
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<h2>search movie <i className="fas fa-search"></i></h2>
-				<input placeholder="Title" onChange={this.handleChange} name="title" className="searchBar"/>
-				<button>Search</button>
-			</form>
+			<Form inline onSubmit={this.handleSubmit} className="mr-5">
+         		<FormControl type="text" placeholder="Movie" className="mr-sm-2" />
+         		<Button variant="success" type="submit">Search</Button>
+       		</Form>
 		)
 	}
 }
