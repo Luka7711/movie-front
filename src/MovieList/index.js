@@ -94,7 +94,7 @@ class MovieList extends Component {
 						<Movie key={i} movie={movie}/>
 					</tbody>
 				)}
-			)		
+			)
 		return(
 			<div className="movieList">
 				<table>
