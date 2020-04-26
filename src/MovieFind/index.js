@@ -18,6 +18,8 @@ class MovieFind extends Component{
 			title: '',
 			allmovies: props.allmovies
 		}
+
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleChange = (e) => {
@@ -37,7 +39,7 @@ class MovieFind extends Component{
 				this.setState({
 					movie: foundMovie
 				})
-				this.props.handleFindMovies(this.state.movie)
+				this.props.handleFindMovies(this.state.movie);
 			}else{
 				console.log("there is no such movie ")
 			}
@@ -47,11 +49,11 @@ class MovieFind extends Component{
 	}
 
 	render(){
-		
+		console.log(this.state, "search form")
 		return (
 			<Form inline onSubmit={this.handleSubmit} className="mr-5">
          		<FormControl type="text" placeholder="Movie" className="mr-sm-2" />
-         		<Button variant="success" type="submit">Search</Button>
+         		<Button variant="success">Search</Button>
        		</Form>
 		)
 	}

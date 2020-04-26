@@ -64,7 +64,7 @@ class Login extends Component {
 										<label className="sign">password:</label>
 											<input className="form-control" type='password' name='password'  value={this.state.password }onChange = { this.handleChange } placeholder="password"/>
 									</div>
-									<button className="btn btn-dark">sign in</button>
+									<button className="btn btn-dark">sign up</button>
 								</form>
 							</div>
 						</div>

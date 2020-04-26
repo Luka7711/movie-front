@@ -12,6 +12,7 @@ import User from './User'
 import Weather from './Weather'  
 import MovieFind from './MovieFind'
 import MovieResult from './MovieResult'
+import Home from './Home'
 import {Navbar, Button, FormControl, Form, 
         Nav, NavItem, NavDropdown, DropdownButton, 
         MenuItem, CollapsibleNav} from 'react-bootstrap';
@@ -112,7 +113,6 @@ class App extends Component {
     })
   }
 
-
   render(){
     return (      
       <div className="App">
@@ -124,7 +124,7 @@ class App extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
            
             <Nav className="mr-auto">
-              <Nav.Link href="/">Schedule</Nav.Link>
+              <Nav.Link href="/home">Schedule</Nav.Link>
               {this.state.loggedIn === true ? <Logout username={this.state.username} handleLogout={this.handleLogout}/> :false}
             </Nav>
             
@@ -135,25 +135,20 @@ class App extends Component {
         </Navbar>
 
         <div className="container-fluid">
-           <div className='title'>
-             {this.state.search === true ? <MovieResult hide={this.handleHide} foundMovies={this.state.foundMovies}/> :null}
-           </div>
-
-           <div className='message'>
-            <p>{this.state.message}</p>
-           </div>
-        
+           {this.state.search === true ? <MovieResult hide={this.handleHide} foundMovies={this.state.foundMovies}/> :null}
            {this.state.username === "Luka7711" ? <button onClick={this.handleData}>Add Data</button> : null}
            {this.state.username === "Luka7711" ? <button onClick={this.handleDelete}>Delete Data</button> : null}
 
            <Switch>
+             <Route exact path="/"><Home/></Route> 
              <Route exact path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} /> } />
              <Route exact path='/signup' render={(props) => <Register {...props} handleRegister={this.handleRegister} /> } />
-             <Route exact path="/" render={(props) => <MovieList movies={this.handleMovies}/>} /> 
+             <Route exact path="/home" render={(props) => <MovieList movies={this.handleMovies}/>} /> 
              <Route exact path='/movieList/:number' render={(props) => <ShowOneMovie {...props} message={this.handleMessage} loggedIn={this.state.loggedIn}/> } />
              {this.state.loggedIn ? <Route exact path='/user' component={User}/>: null}
            </Switch>
         </div>
+     
       </div>
     );
   }
