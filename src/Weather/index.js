@@ -37,12 +37,14 @@ class Weather extends Component{
 	}
 	
 	render(){
-		// console.log(this.props.weatherCondit)
-		console.log(this.state)
 		return(
-			<div className="weather">
-				<p className="weatherDetails"><i className="fas fa-temperature-low"></i> {this.props.fahren} / {this.props.cels}</p>
-				<img src={this.state.imageURL} alt="weather"/><br/>
+			<div className="row">
+				<div className="col-lg-4 my-auto">
+					<p style={{fontSize:"15px"}}><i className="fas fa-temperature-low"></i> {this.props.fahren} / {this.props.cels}</p>
+				</div>
+				<div className="col-lg-3">
+					<img style={{maxWidth:"70px"}} src={this.state.imageURL} alt="weather"/>
+				</div>
 			</div>
 		)
 	}

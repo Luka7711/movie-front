@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ShowOneMovie from '../ShowOneMovie';
 import {Link} from 'react-router-dom'
 import Movie from '../Movie'
-
+import Weather from '../Weather'
 
 class MovieList extends Component {
 	constructor(){
@@ -21,7 +21,8 @@ class MovieList extends Component {
 	} 
 	
 	componentDidMount(){
-		this.getMovies()
+		this.getWeather();
+		this.getMovies();
 	};
 
 	getMovies = async() =>{
@@ -87,6 +88,33 @@ class MovieList extends Component {
 		}
 	}
 	
+
+  	getWeather = async() => {
+    	try{
+    	  const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/chicago-cinema/weather/in/chicago`, {
+      	  	method:"GET",
+       	  	credentials:"include"
+     	  })
+      
+      		if(response.status == 200){
+        		const dataParsed = await response.json()
+        	
+        		this.setState({
+          			 fahren: dataParsed.fahren,
+         			 cels: dataParsed.cels,
+         			 weatherCondit: dataParsed.weatherCondit
+       			})
+     		}
+     		else {
+        		console.log('something went wrong')
+     		}   
+    	}
+    	catch(err){
+      		console.log(err)
+    	}
+  	}
+
+
 	render(){
 			let moviePage = this.state.movieList.map((movie, i) => {
 				return(
@@ -96,22 +124,42 @@ class MovieList extends Component {
 				)}
 			)
 		return(
-			<div className="movieList">
-				<table>
-					<tbody>
+			<div className="row movie_list">
+				<div className="col-lg-12">
+					<div className="row">
+						
+						<div className="col-lg-4 my-auto">
+							<h3>Scheduled movies</h3>
+						</div>
+						
+						<div className="col-lg-4">
+						</div>
+						
+						<div className="col-lg-4">
+							{ 
+								this.state.weatherCondit ?
+            					<Weather fahren={this.state.fahren} cels={this.state.cels} weatherCondit={this.state.weatherCondit}/> 
+          						:null 
+          					}
+						</div>
+
+					</div>
+					<table className="table">
+						<tbody>
 						<tr className="main">
-							<th>Title</th>
+							<th>Movie</th>
 							<th>Date</th>
 							<th>Address</th>
 							<th>Park</th>
-							<th>Link</th>
 						</tr>
-					</tbody>
+						</tbody>
 						{this.state.showMovieList ? moviePage : "loading" }
-				</table>
+					</table>
 				<button onClick={this.handlePrev} className="btn"><i className="fas fa-arrow-circle-left"></i></button>
-				<span className="page">-{this.state.pageNum}-</span>
+					<span className="page">-{this.state.pageNum}-</span>
 				<button onClick={this.handleNext} className="btn"><i className="fas fa-arrow-circle-right"></i></button>
+				
+				</div>
 			</div>
 		)
 	}

@@ -13,7 +13,6 @@ class User extends Component {
 	render(){
 		return(
 			<div>
-				<h2>Saved List</h2>
 				<UserCollection/>
 			</div>
 		)

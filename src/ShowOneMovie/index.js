@@ -66,8 +66,8 @@ class ShowOneMovie extends Component{
 			}	
 		}catch(err){
 			this.setState({
-							movieAbout:"Not available",
-			poster:'http://sadamatsu-hp.com/wp-content/uploads/2016/12/film-strip-template-elrgugds.jpg'
+				movieAbout:"Not available",
+				poster:'https://messybun.s3-accelerate.amazonaws.com/1469-14691527893790336.jpeg'
 			})
 		}
 	}
@@ -107,25 +107,43 @@ class ShowOneMovie extends Component{
 		}	
 	}	
 	render(){
-		console.log(this.state.poster.length)
 		return(
-			<div className="oneMovie">	
-				<div className="content">
-					<img src={this.state.poster} className="poster" alt="Hello"/>
-					<div className="description">	
-						<span className="park_name">{this.state.oneMovie.park}</span>
-						<button onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>
-						<ul className="movieDescription">	
-							<li><h1>{this.state.oneMovie.title}</h1></li>
-							<li>Date: {this.state.oneMovie.date}</li>
-							<li>Day:{this.state.oneMovie.day}</li>
-							<li>Address: {this.state.oneMovie.address}</li>
-							<li>Park phone#: {this.state.oneMovie.parkphone}</li>
-							<li>Description: {this.state.movieAbout}</li>
-						</ul>
-						
+			<div className="container movie_container">	
+				<div className="row">
+					<div className="col-lg-12">
+						<div className="row">
+							<div className="col-lg-4">
+								<img src={this.state.poster} className="poster" alt="image is not available"/>
+							</div>
+							
+							<div className="col-lg-8">	
+								<div className="row">
+									<div className="col-lg-8">
+										<ul className="movieDescription">	
+											<li><h2>{this.state.oneMovie.title}</h2></li>
+											<li id="plot">{this.state.movieAbout}</li>
+										</ul>
+									</div>
+								</div>
+
+								<div className="row">
+									<div className="col-lg-6">
+										<ul id="information">
+											<li><h4>Information</h4></li>
+											<li>{this.state.oneMovie.park}</li>
+											<li>{this.state.oneMovie.date} ({this.state.oneMovie.day})</li>
+											<li>Address: {this.state.oneMovie.address}</li>
+											<li>Park phone: {this.state.oneMovie.parkphone}</li>
+										</ul>
+										
+										<button className="btn-lg btn-info" onClick={this.handleSaveMovie}>{this.state.saveMessage}</button>
+									</div>
+
+										{this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }					
+								</div>
+							</div>
+						</div>
 					</div>
-					{this.state.showMap ? <GoogleMap lng={this.state.oneMovie.lng} lat={this.state.oneMovie.lat} park={this.state.oneMovie.park}/> : null }
 				</div>
 			</div> 
 		)

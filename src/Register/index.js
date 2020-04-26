@@ -46,12 +46,30 @@ class Login extends Component {
 
 	render(){
 		return(
-			<div className="sign">
-				<form onSubmit = { this.handleSubmit }>
-					<label>username</label><input type='text' name='username' value={ this.state.username } onChange = {this.handleChange} placeholder="username"/>
-					<label>password</label><input type='password' name='password'  value={this.state.password }onChange = { this.handleChange } placeholder="password"/>
-					<button>Register</button>
-				</form>
+
+			<div className="movie_container col-lg-6 d-flex mx-auto justify-content-center flex-column">
+				<div className="row" >
+					<div className="col-sm-12 col-md-8 col-lg-6 mx-auto">
+						<div className="card rounded shadow shadow-sm">
+							<div className="card-header text-center">
+								<h3>Sign up</h3>
+							</div>
+							<div className="card-body d-flex justify-content-center">
+								<form className="form" onSubmit={this.handleSubmit}>
+									<div className="form-group">
+										<label className="sign">username: </label>
+											<input className="form-control" type='text' name='username' value={ this.state.username } onChange = {this.handleChange} placeholder="username"/>
+									</div>
+									<div className="form-group">	
+										<label className="sign">password:</label>
+											<input className="form-control" type='password' name='password'  value={this.state.password }onChange = { this.handleChange } placeholder="password"/>
+									</div>
+									<button className="btn btn-dark">sign in</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		)
 	}
